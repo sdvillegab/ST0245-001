@@ -25,7 +25,7 @@ public class Fecha {
 
 
     /**
-     * Se inicializan las variables globales en el constructor de manera que no posean valores nulos o 0s.
+     * Se inicializan las variables globales en el constructor
      */
     public Fecha(int dia,int mes,int anyo) {
         this.dia = dia;
@@ -36,7 +36,7 @@ public class Fecha {
     /**
      * Método para obtener la variable global dia.
      *
-     * @return el dia
+     * @return the day
      */
     public int getDia() {
         return this.dia;
@@ -45,7 +45,7 @@ public class Fecha {
     /**
      * Método para obtener la variable global mes.
      *
-     * @return el mes
+     * @return the month
      */
     public int getMes() {
         return this.mes;
@@ -54,7 +54,7 @@ public class Fecha {
     /**
      * Método para obtener la variable global anio.
      *
-     * @return el año
+     * @return the year
      */
     public int getAnyo() {
         return this.anyo;
