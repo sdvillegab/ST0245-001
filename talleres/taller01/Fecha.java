@@ -1,4 +1,5 @@
 
+
 /**
  * La clase Fecha tiene la intención de representar el tipo abstracto fecha.
  * Aunque ya existen librerías encargadas de esta funcion:
@@ -19,24 +20,25 @@ public class Fecha {
     tener en cuenta tipado de las 3 variables!.
     */
 
-    private final int dia;
-    private final int mes;
+    private final short dia;
+    private final short mes;
     private final int anyo;
 
 
     /**
-     * Se inicializan las variables globales en el constructor
+     * Se inicializan las variables globales en el constructor de manera que no posean valores nulos o 0s.
      */
-    public Fecha(int dia,int mes,int anyo) {
+    public Fecha(byte dia,byte mes,short anyo) {
         this.dia = dia;
         this.mes = mes;
         this.anyo = anyo;
     }
 
+
     /**
      * Método para obtener la variable global dia.
      *
-     * @return the day
+     * @return el dia
      */
     public int getDia() {
         return this.dia;
@@ -45,7 +47,7 @@ public class Fecha {
     /**
      * Método para obtener la variable global mes.
      *
-     * @return the month
+     * @return el mes
      */
     public int getMes() {
         return this.mes;
@@ -54,7 +56,7 @@ public class Fecha {
     /**
      * Método para obtener la variable global anio.
      *
-     * @return the year
+     * @return el año
      */
     public int getAnyo() {
         return this.anyo;
@@ -73,25 +75,10 @@ public class Fecha {
      */
 
     public int comparar(Fecha otra) {
-        if(this.anyo == otra.getAnyo()){
-            if(this.mes == otra.getMes()){
-                if(this.dia == otra.getDia()){
-                    return 0;
-                }else if(this.dia > otra.getDia()){
-                    return 1;
-                }else if(this.dia < otra.getDia()){
-                    return -1;
-                }
-            }else if(this.mes > otra.getMes()){
-                return  1;
-            }else if(this.mes < otra.getMes()){
-                return  -1;
-            }
-        }else if(this.anyo > otra.getAnyo()){
-            return  1;
-        }else if(this.anyo < otra.getAnyo()){
-            return -1;
-        }
+        long date1 = Long.parseLong(String.valueOf(this.anyo)+String.valueOf(this.mes)+String.valueOf(this.dia));
+        long date2 = Long.parseLong(String.valueOf(otra.getAnyo())+String.valueOf(otra.getMes())+String.valueOf(otra.getDia()));
+        if(date1>date2)return 1;
+        if(date1<date2)return -1;
         return 0;
     }
 
