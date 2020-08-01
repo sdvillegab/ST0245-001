@@ -27,9 +27,3 @@ class Point3D:
         return math.sqrt(math.pow(p.getX()-self.x,2)+math.pow(p.getY()-self.y,2)+math.pow(p.getZ()-self.z,2))
 
 
-punto1 = Point3D(1,4,8)
-punto2 = Point3D(3,6,9)
-print(punto1.radio())
-print(punto1.TetaAngle())
-print(punto1.Fi())
-print(punto1.Euclides(punto2))
