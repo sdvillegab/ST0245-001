@@ -19,8 +19,3 @@ class Point2D:
     def Euclides(self,p):
         return math.sqrt(math.pow(p.getX()-self.x,2)+math.pow(p.getY()-self.y,2))
     
-punto1 = Point2D(1,4)
-punto2 = Point2D(3,3)
-print(punto1.redio())
-print(punto1.TetaAngle())
-print(punto1.Euclides(punto2))
