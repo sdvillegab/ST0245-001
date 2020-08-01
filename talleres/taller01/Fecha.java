@@ -20,9 +20,9 @@ public class Fecha {
     tener en cuenta tipado de las 3 variables!.
     */
 
-    private final short dia;
-    private final short mes;
-    private final int anyo;
+    private final byte dia;
+    private final byte mes;
+    private final short anyo;
 
 
     /**
