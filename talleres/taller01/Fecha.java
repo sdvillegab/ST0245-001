@@ -23,9 +23,9 @@ public class Fecha {
     tener en cuenta tipado de las 3 variables!.
     */
 
-    private final byte dia;
-    private final byte mes;
-    private final short anyo;
+    private byte dia;
+    private byte mes;
+    private short anyo;
 
 
     /**
@@ -78,10 +78,30 @@ public class Fecha {
      */
 
     public int comparar(Fecha otra) {
-        long date1 = Long.parseLong(String.valueOf(this.anyo)+String.valueOf(this.mes)+String.valueOf(this.dia));
-        long date2 = Long.parseLong(String.valueOf(otra.getAnyo())+String.valueOf(otra.getMes())+String.valueOf(otra.getDia()));
-        if(date1>date2)return 1;
-        if(date1<date2)return -1;
+        if (this.getAnyo() == otra.getAnyo()) {
+            if (this.getMes() == otra.getMes()) {
+                if (this.getDia() == otra.getDia()) {
+                      return 0;
+                }
+                else if (this.getDia() > this.getDia()) {
+                      return 1;
+                }
+                else if (this.getDia() < otra.getDia()) {
+                     return -1;
+                }
+            }
+            else if (this.getMes() > otra.getMes()) {
+                  return  1;
+            }
+            else if (this.getMes() < otra.getMes()) {
+                 return  -1;
+            }
+        }else if(this.getAnyo() > otra.getAnyo()) {
+             return  1;
+        }
+        else if (this.getAnyo() < otra.getAnyo()) {
+             return -1;
+        }
         return 0;
     }
 

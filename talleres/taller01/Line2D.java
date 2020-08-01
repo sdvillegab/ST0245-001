@@ -14,7 +14,7 @@ public class Line2D {
         int dx = (int)(end.getX()-begin.getX());
 
         if(dx!=0) {
-            //Siplificación de fracción.
+            //Simplificación de fracción.
             if(dy==0) {
                 dx = 1;
             }else{

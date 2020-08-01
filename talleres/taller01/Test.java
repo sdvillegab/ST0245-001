@@ -37,9 +37,9 @@ public class Test{
     }
 
     public static Fecha leerFecha(String linea){
-        int day = Integer.parseInt(linea.substring(3,5));
-        int month = Integer.parseInt(linea.substring(0,2));
-        int year = Integer.parseInt(linea.substring(6,10));
+        byte day = Byte.parseByte(linea.substring(3,5));
+        byte month = Byte.parseByte(linea.substring(0,2));
+        short year = Short.parseShort(linea.substring(6,10));
         return new Fecha(day, month, year);
     }
 
