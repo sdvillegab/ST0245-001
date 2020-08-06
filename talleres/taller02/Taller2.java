@@ -60,7 +60,7 @@ public class Taller2 {
 	*/
 	private static boolean SumaGrupo(int start, int[] nums, int target) {
 		if(start >= nums.length)return target == 0;
-        	return sumaGrupo(start+1,nums,target-nums[start]) || sumaGrupo(start+1,nums,target);
+        	return SumaGrupo(start+1,nums,target-nums[start]) || SumaGrupo(start+1,nums,target);
 	}
 	
 	/**
