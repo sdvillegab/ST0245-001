@@ -25,9 +25,9 @@ public class Taller2 {
 	* @return el máximo común divisor
 	*/
 	public static int gcd(int p, int q){
-        if(p == 0) return q;
-        else if(q == 0) return p;
-        else return gcd(q, p % q);
+        	if(p == 0) return q;
+        	else if(q == 0) return p;
+        	else return gcd(q, p % q);
 	}
 
 	/**
@@ -59,7 +59,8 @@ public class Taller2 {
 	* @return verdadero si hay un subconjunto el cual su suma = target
 	*/
 	private static boolean SumaGrupo(int start, int[] nums, int target) {
-		return true;
+		if(start >= nums.length)return target == 0;
+        	return sumaGrupo(start+1,nums,target-nums[start]) || sumaGrupo(start+1,nums,target);
 	}
 	
 	/**
@@ -87,7 +88,12 @@ public class Taller2 {
 	*/
 
 	private static void combinationsAux(String prefix, String s) {  
-		//...
+		if(s.length() == 0){
+            		System.out.println(prefix);
+        	}else {
+           		combinationsAux(prefix+s.charAt(0),s.substring(1));
+           		combinationsAux(prefix,s.substring(1));
+        	}
 	}
 
 }
