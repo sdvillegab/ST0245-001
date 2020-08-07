@@ -1,4 +1,4 @@
-"subconjuntos.py sirve para darnos a conocer si hay algun subconjunto el cual su suma = target "
+"subconjuntos.py sirve para encontrar las posibles combinaciones en la cadena s"
 "Autores: Julian Ramirez, Samuel Villegas"
 
 def subconjuntos(s):

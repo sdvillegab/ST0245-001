@@ -96,4 +96,11 @@ public class Taller2 {
         }
 	}
 
+	/**
+	 * @param  s1
+	 * @param s2
+	 * 
+	 * @return int devuelve la subcadena común más grande entre dos cadenas
+	 */
+
 }
