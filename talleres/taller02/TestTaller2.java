@@ -12,7 +12,7 @@ public class TestTaller2 {
 		return false;
 	}
 	
-/*
+
 	public static boolean ejercicio2(){
 		boolean a, b, c, d;
 		a=Taller2.SumaGrupo(new int[] {2, 4, 8}, 9);
@@ -44,14 +44,13 @@ public class TestTaller2 {
 	}
 	
 	
-	*/
 	public static void main(String[] args){	
         //Ejercicio1
         if(ejercicio1())
             System.out.println("Ejercicio 1 Correcto");
         else
         System.out.println("Ejercicio 1 Incorrecto");
-        /*
+
         //Ejercicio2
         if(ejercicio2())
             System.out.println("Ejercicio 2 Correcto");
@@ -60,9 +59,8 @@ public class TestTaller2 {
         
         
         //Ejercicio3
-        ejercicio3()
+        ejercicio3();
         
-        */
 
     }
 }
