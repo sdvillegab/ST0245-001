@@ -11,7 +11,7 @@
 */
 
 public class Taller2 {
-	
+
 	/**
 	* @param p entrada 1 entero positivo, mayor que q
 	* @param q entrada 2 entero positivo, menor que p
@@ -31,25 +31,25 @@ public class Taller2 {
 	}
 
 	/**
-	* @param nums entrada 2 arreglo de enteros positivos, sobre el cual vamos a interar 
-	* @param target entrada 3 entero positivo, determina el valor de referencia 
-	* El método SumaGrupo tiene como objetivo darnos a conocer si hay 
+	* @param nums entrada 2 arreglo de enteros positivos, sobre el cual vamos a interar
+	* @param target entrada 3 entero positivo, determina el valor de referencia
+	* El método SumaGrupo tiene como objetivo darnos a conocer si hay
 	* algun subconjunto el cual su suma = target.
-	* 
+	*
 	*
 	* @return verdadero si hay un subconjunto el cual su suma = target
 	*/
 	public static boolean SumaGrupo(int[] nums, int target) {
 		return SumaGrupo(0, nums, target);
-	}	
-	
+	}
+
 	/**
 	* @param start entrada 1 entero positivo, determina un índice dentro del proceso
-	* @param nums entrada 2 arreglo de enteros positivos, sobre el cual vamos a interar 
-	* @param target entrada 3 entero positivo, determina el valor de referencia 
-	* El método SumaGrupo tiene como objetivo darnos a conocer si hay 
+	* @param nums entrada 2 arreglo de enteros positivos, sobre el cual vamos a interar
+	* @param target entrada 3 entero positivo, determina el valor de referencia
+	* El método SumaGrupo tiene como objetivo darnos a conocer si hay
 	* algun subconjunto el cual su suma = target.
-	* 
+	*
 	* Este método SumaGrupo es "private" de modo que solo se puede llamar desde el interior de la clase pues
 	* el método que lo representa es el SumaGrupo público.
 	* Para más detalles sobre modificadores de acceso:
@@ -59,21 +59,21 @@ public class Taller2 {
 	* @return verdadero si hay un subconjunto el cual su suma = target
 	*/
 	private static boolean SumaGrupo(int start, int[] nums, int target) {
-		if(start >= nums.length) return target == 0;
+		if(start >= nums.length)return target == 0;
         	return SumaGrupo(start+1,nums,target-nums[start]) || SumaGrupo(start+1,nums,target);
 	}
-	
+
 	/**
 	* @param s se trata de una cadena de caracteres sobre la cual hallaremos las posibles combinaciones.
 	*
-	* El método combinations se define para que solo se tenga que pasar el parametro s y no la cadena 
+	* El método combinations se define para que solo se tenga que pasar el parametro s y no la cadena
 	* vacía necesaria para el metodo reursivo combinationsAux. Este metodo no se modifica.
-	* 
+	*
 	*/
-	public static void combinations(String s) { 
-		combinationsAux("", s); 
+	public static void combinations(String s) {
+		combinationsAux("", s);
 	}
-	
+
 	/**
 	* @param prefix, se utiliza como una variable auxiliar para guardar datos sobre el proceso.
 	* @param s se trata de una cadena de caracteres sobre la cual hallaremos las posibles combinaciones.
@@ -87,7 +87,7 @@ public class Taller2 {
 	*
 	*/
 
-	private static void combinationsAux(String prefix, String s) {  
+	private static void combinationsAux(String prefix, String s) {
 		if(s.length() == 0){
             		System.out.println(prefix);
         }else {
