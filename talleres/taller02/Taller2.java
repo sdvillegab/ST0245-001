@@ -102,5 +102,17 @@ public class Taller2 {
 	 * 
 	 * @return int devuelve la subcadena común más grande entre dos cadenas
 	 */
-
+	
+	public static int SubCadenaComun(String s1,String s2){
+        	return SubCadenaComunAux(s1,s2,s1.length(),s2.length());
+    	}
+	
+	private static int SubCadenaComunAux( String s1, String s2 , int i, int j ){
+        	if (i == 0 || j == 0)
+            		return 0;
+        	if (s1.charAt(i-1) == s2.charAt(j-1))
+            		return 1 + SubCadenaComunAux(s1, s2, i-1, j-1);
+        	else
+            		return Math.max(SubCadenaComunAux(s1, s2, i, j-1), SubCadenaComunAux(s1, s2, i-1, i));
+    	}
 }
