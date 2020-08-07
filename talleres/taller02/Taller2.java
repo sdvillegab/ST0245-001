@@ -90,10 +90,10 @@ public class Taller2 {
 	private static void combinationsAux(String prefix, String s) {
 		if(s.length() == 0){
             		System.out.println(prefix);
-        }else {
+        	}else {
            		combinationsAux(prefix+s.charAt(0),s.substring(1));
            		combinationsAux(prefix,s.substring(1));
-        }
+        	}
 	}
 
 	/**
@@ -108,11 +108,8 @@ public class Taller2 {
     	}
 	
 	private static int SubCadenaComunAux( String s1, String s2 , int i, int j ){
-        	if (i == 0 || j == 0)
-            		return 0;
-        	if (s1.charAt(i-1) == s2.charAt(j-1))
-            		return 1 + SubCadenaComunAux(s1, s2, i-1, j-1);
-        	else
-            		return Math.max(SubCadenaComunAux(s1, s2, i, j-1), SubCadenaComunAux(s1, s2, i-1, i));
+        	if (i == 0 || j == 0) return 0;
+        	if (s1.charAt(i-1) == s2.charAt(j-1)) return 1 + SubCadenaComunAux(s1, s2, i-1, j-1);
+        	else return Math.max(SubCadenaComunAux(s1, s2, i, j-1), SubCadenaComunAux(s1, s2, i-1, i));
     	}
 }
