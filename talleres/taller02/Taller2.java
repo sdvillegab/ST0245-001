@@ -89,31 +89,31 @@ public class Taller2 {
 	private static void combinationsAux(String prefix, String s) {
 		if(s.length() == 0){
             		System.out.println(prefix);
-        }else {
+        	}else {
            		combinationsAux(prefix+s.charAt(0),s.substring(1));
            		combinationsAux(prefix,s.substring(1));
-        }
+        	}
 	}
 
 	/**
 	 * @param  s1
 	 * @param s2
-	 * 
+	 *
 	 * @return int devuelve la longitud de la subcadena común más grande entre dos cadenas
 	 */
 	public static int subCadenaComun(String s1,String s2){
         	return subCadenaComunAux(s1,s2,s1.length(),s2.length());
     	}
-	
+
 	private static int subCadenaComunAux(String s1, String s2 , int i, int j ){
         	if (i == 0 || j == 0){
 				return 0;
-			}	
+			}
         	if (s1.charAt(i-1) == s2.charAt(j-1)){
 				return 1 + subCadenaComunAux(s1, s2, i-1, j-1);
 			}else{
 				return Math.max(subCadenaComunAux(s1, s2, i, j-1), subCadenaComunAux(s1, s2, i-1, j));
 			}
-            	
+
     	}
 }
