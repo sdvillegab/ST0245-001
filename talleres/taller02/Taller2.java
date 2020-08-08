@@ -86,7 +86,6 @@ public class Taller2 {
 	* @see <a href="http://ayudasprogramacionweb.blogspot.com/2013/02/modificadores-acceso-public-protected-private-java.html"> modificadores </a>
 	*
 	*/
-
 	private static void combinationsAux(String prefix, String s) {
 		if(s.length() == 0){
             		System.out.println(prefix);
@@ -100,19 +99,21 @@ public class Taller2 {
 	 * @param  s1
 	 * @param s2
 	 * 
-	 * @return int devuelve la subcadena común más grande entre dos cadenas
+	 * @return int devuelve la longitud de la subcadena común más grande entre dos cadenas
 	 */
-	
-	public static int SubCadenaComun(String s1,String s2){
-        	return SubCadenaComunAux(s1,s2,s1.length(),s2.length());
+	public static int subCadenaComun(String s1,String s2){
+        	return subCadenaComunAux(s1,s2,s1.length(),s2.length());
     	}
 	
-	private static int SubCadenaComunAux( String s1, String s2 , int i, int j ){
-        	if (i == 0 || j == 0)
-            		return 0;
-        	if (s1.charAt(i-1) == s2.charAt(j-1))
-            		return 1 + SubCadenaComunAux(s1, s2, i-1, j-1);
-        	else
-            		return Math.max(SubCadenaComunAux(s1, s2, i, j-1), SubCadenaComunAux(s1, s2, i-1, i));
+	private static int subCadenaComunAux(String s1, String s2 , int i, int j ){
+        	if (i == 0 || j == 0){
+				return 0;
+			}	
+        	if (s1.charAt(i-1) == s2.charAt(j-1)){
+				return 1 + subCadenaComunAux(s1, s2, i-1, j-1);
+			}else{
+				return Math.max(subCadenaComunAux(s1, s2, i, j-1), subCadenaComunAux(s1, s2, i-1, j));
+			}
+            	
     	}
 }
