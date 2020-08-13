@@ -36,12 +36,13 @@ public class Taller3 {
 	*/	
 	
 	private static void torresDeHannoiAux(int n, int origen, int intermedio, int destino) {
-		if(n == 1){
-            System.out.println("Disk "+ n + " from "+ origen + " to "+ destino);
-            torresDeHannoiAux();
-        }else{
-
-        }
+		if(n == 1) {
+            		System.out.println("Mover un dico de la torre "+origen+ "a la torre " +destino);
+        	}else {
+            		torresDeHannoiAux(n - 1, origen, destino, intermedio);
+            		System.out.println("Mover un dico de la torre "+origen+ "a la torre " +destino );
+            		torresDeHannoiAux(n-1, intermedio, origen, destino);
+        	}
 	}
 		
 
@@ -69,10 +70,14 @@ public class Taller3 {
 	*/
 	private static void permutationAux(String prefix, String str) {
 		if(str.length() == 0){
-            System.out.println(prefix);
-        }else{
-            permutationAux(str.charAt(0),);
-        }
+            		System.out.println(prefix);
+        	}else{
+            		for(int i = 0; i<=str.length()-1;i++){
+                		String cad1 = prefix+String.valueOf(str.charAt(i));
+                		String cad2 = str.replace(String.valueOf(str.charAt(i)),"");
+                		permutationAux(cad1,cad2);
+            		}
+        	}
 	}
 		
 	
