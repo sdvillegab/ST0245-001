@@ -35,8 +35,9 @@ public class TestTaller3 {
 		System.out.println("Dato, Daot, Dtao, Dtoa, Doat, Dota, aDto, aDot, atDo, atoD, aoDt, aotD, tDao, tDoa, taDo, taoD, toDa, toaD, oDat, oDta, oaDt, oatD, otDa, otaD");
 		System.out.println("");
 		Taller3.permutation("Dato");
+		System.out.println("************Desencriptar************");
+		Taller3.permutation("abcd");
 	}
-	
 	
 	public static void main(String[] args){	
         //Ejercicio1

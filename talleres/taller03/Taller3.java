@@ -1,9 +1,12 @@
 /**
 *
-* La clase Taller3 tiene como objtivo dar solución a los puntos del taller 3
+* La clase Taller3 tiene como objetivo dar solución a los puntos del taller 3
 *
 * @author Mauricio Toro, Andrés Páez
 * @version 1
+*
+* @author Julian Ramirez,Samuel Villegas
+* @version 2
 */
 
 
@@ -15,7 +18,6 @@ public class Taller3 {
 	* @param n numero de discos
 	* 
 	*/	
-	
 	public static void torresDeHannoi(int n) {
 		torresDeHannoiAux(n, 1, 2, 3);
 	}
@@ -37,10 +39,10 @@ public class Taller3 {
 	
 	private static void torresDeHannoiAux(int n, int origen, int intermedio, int destino) {
 		if(n == 1) {
-            		System.out.println("Mover un dico de la torre "+origen+ "a la torre " +destino);
+            		System.out.println("Mover un disco de la torre "+origen+ " a la torre " +destino);
         	}else {
             		torresDeHannoiAux(n - 1, origen, destino, intermedio);
-            		System.out.println("Mover un dico de la torre "+origen+ "a la torre " +destino );
+            		System.out.println("Mover un disco de la torre "+origen+ " a la torre " +destino );
             		torresDeHannoiAux(n-1, intermedio, origen, destino);
         	}
 	}
@@ -70,7 +72,8 @@ public class Taller3 {
 	*/
 	private static void permutationAux(String prefix, String str) {
 		if(str.length() == 0){
-            		System.out.println(prefix);
+					System.out.println(prefix);
+					System.out.println(AdvancedEncryptionStandard.desencriptarArchivo(prefix));
         	}else{
             		for(int i = 0; i<=str.length()-1;i++){
                 		String cad1 = prefix+String.valueOf(str.charAt(i));
