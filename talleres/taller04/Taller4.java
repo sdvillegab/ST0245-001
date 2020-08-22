@@ -4,9 +4,11 @@
  *
  *@autor Mauricio Toro, Camilo Paez
  *@version 1
+ *
+ * @autor Julian Ramirez,Samuel Villegas
+ * @version 2
  */
 public class Taller4 {
-
 
     /**
      * @param array es un arreglo de numeros enteros
@@ -33,7 +35,7 @@ public class Taller4 {
      */
     private static int arrayMax(int[] array, int indice, int max){
         if(array.length-1 == indice) return max;
-        if(array[indice]>max)return arrayMax(array,indice+1,array[indice]);
+        if(array[indice] > max)return arrayMax(array,indice+1,array[indice]);
         else return arrayMax(array,indice+1,max);
     }
 
@@ -66,7 +68,7 @@ public class Taller4 {
      * @return el valor encontrado en long dada la posible cantidad de bits
      */
     public static long fibonacci(int n) {
-        if(n ==0 ) return 0;
+        if(n == 0 ) return 0;
         if(n == 1) return 1;
         return fibonacci(n-1) + fibonacci(n-2);
     }

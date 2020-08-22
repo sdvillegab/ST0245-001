@@ -2,6 +2,8 @@
 Created on Thu Aug 13 11:36:17 2020
 
 @author: Samuel y Julian
+
+Con este codigo se cargan en una lista los datos de los datasets
 """
        
 import csv
@@ -12,5 +14,6 @@ def leer_datos(fichero):
     return lista
 
 lista = leer_datos("0_test_balanced_5000.csv")
+
 for i in lista:
     print(i)
