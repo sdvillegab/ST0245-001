@@ -65,7 +65,7 @@ public class Taller4 {
      * @return el elemento más grande
      */
     private static int arrayMax(int[] array, int indice, int max){
-        if(indice == indice) return max;
+        if(indice == array.length-1) return max;
         if(array[indice]>max)return arrayMax(array,indice+1,array[indice]); //T(n-1) =  O(1)
         else return arrayMax(array,indice+1,max);
     }
