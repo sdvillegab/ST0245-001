@@ -20,5 +20,25 @@ public class Recursion2{
         return groupNoAdj(start+2, nums, target-nums[start]) || groupNoAdj(start+2,nums,target) ||
         groupNoAdj(start+1, nums, target) || groupNoAdj(start+1,nums,target);
     }
-           
+     
+    public boolean splitArray(int[] nums) {
+        return splitArrayAux
+        (nums,0,0,0);
+    }
+    public boolean splitArrayAux(int [] nums, int indice,int suma1, int suma2){
+        if(indice >= nums.length){ return (suma1 == suma2); }
+        return splitArrayAux(nums,indice+1,suma1+nums[indice],suma2) || 
+        splitArrayAux(nums,indice+1,suma1,suma2+nums[indice]);
+    }
+
+    public boolean split53(int[] nums) {
+        return split53aux(nums,0,0,0);
+      }
+      public boolean split53aux(int [] nums, int indice,int suma1, int suma2){
+              if(indice >= nums.length){ return (suma1 == suma2); }
+              else if(nums[indice]%3==0){return split53aux(nums,indice+1,suma1+nums[indice],suma2);}
+              else if(nums[indice]%5==0){return split53aux(nums,indice+1,suma1,suma2+nums[indice]);}
+              else{ return split53aux(nums,indice+1,suma1+nums[indice],suma2) || 
+                    split53aux(nums,indice+1,suma1,suma2+nums[indice]);}
+      }
 }

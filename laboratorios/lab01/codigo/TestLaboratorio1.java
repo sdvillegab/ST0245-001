@@ -27,9 +27,11 @@ public class TestLaboratorio1{
         }finally {
             scan.close();
 		}
-		for(int i = 0; i < 40;i+=2){
+		for(int i = 10; i < 40;i++){
             long t1 = System.currentTimeMillis();
             System.out.println("Adn1(), Adn2() : "+Laboratorio1.subCadenaComun(adn1.substring(0,i), adn2.substring(0,i)));
+            //System.out.println("Adn1(), Adn2() : "+Laboratorio1.subCadenaComun(adn1.substring(0,i), adn2.substring(0,i)));
+            Laboratorio1.subCadenaComun(adn1.substring(0,i), adn2.substring(0,i));
             long t2 = System.currentTimeMillis();
             System.out.println(t2-t1);
         }
@@ -43,7 +45,6 @@ public class TestLaboratorio1{
         System.out.println("Para 15: "+Laboratorio1.llenaRectangulo(15));
     }
     public static void main(String args[]){
-
         ejercicio11();
         //ejercicio12();
     }
