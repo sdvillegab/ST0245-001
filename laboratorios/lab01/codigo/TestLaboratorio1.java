@@ -27,15 +27,13 @@ public class TestLaboratorio1{
         }finally {
             scan.close();
 		}
-		System.out.println("C1, C2 : "+Laboratorio1.subCadenaComun("ABCDGH", "AEDFHR"));
-		System.out.println("C3, C4 : "+Laboratorio1.subCadenaComun("ABCDGHLFJJVJJIWEHHH", "AEDFHRKUWQUGUXGHB"));
-		// *Nota* Al hacer la prueba con las cadenas de los datasets completas,
-		// se generó un StackOverflow,
-		// mientras que con otras cadenas de menor tamaño este error no ocurre,
-		//aun asi notamos que el tiempo de ejecucion resultó ser bastante grande para las cadenas que usamos
-		System.out.println("Adn1(25), Adn2(25) : "+Laboratorio1.subCadenaComun(adn1.substring(0,25), adn2.substring(0,25)));
-		System.out.println("Adn1(10), Adn3(10) : "+Laboratorio1.subCadenaComun(adn1.substring(0,10), adn3.substring(0,10)));
-		System.out.println("Adn2(5), Adn3(5) : "+Laboratorio1.subCadenaComun(adn2.substring(0,5), adn3.substring(0,5)));
+		for(int i = 0; i < 40;i+=2){
+            long t1 = System.currentTimeMillis();
+            System.out.println("Adn1(), Adn2() : "+Laboratorio1.subCadenaComun(adn1.substring(0,i), adn2.substring(0,i)));
+            long t2 = System.currentTimeMillis();
+            System.out.println(t2-t1);
+        }
+
     }
     public static void ejercicio12(){
         System.out.println("Para 1: "+Laboratorio1.llenaRectangulo(1));
@@ -45,7 +43,8 @@ public class TestLaboratorio1{
         System.out.println("Para 15: "+Laboratorio1.llenaRectangulo(15));
     }
     public static void main(String args[]){
+
         ejercicio11();
-        ejercicio12();
+        //ejercicio12();
     }
 }

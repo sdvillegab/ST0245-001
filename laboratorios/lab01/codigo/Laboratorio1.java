@@ -20,12 +20,12 @@ public class Laboratorio1 {
     */
     private static int subCadenaComunAux(String s1, String s2 , int i, int j ){
         if (i == 0 || j == 0){
-            return 0;
+            return 0; //c1
         }
         if (s1.charAt(i-1) == s2.charAt(j-1)){
-            return 1 + subCadenaComunAux(s1, s2, i-1, j-1);
+            return 1 + subCadenaComunAux(s1, s2, i-1, j-1); //c2+T(n-1,m-1)
         }else{
-            return Math.max(subCadenaComunAux(s1, s2, i, j-1), subCadenaComunAux(s1, s2, i-1, j));
+            return Math.max(subCadenaComunAux(s1, s2, i, j-1), subCadenaComunAux(s1, s2, i-1, j));//c3+T(n,m-1)+T(n-1,m)
         }
     }
     
