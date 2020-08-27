@@ -29,7 +29,6 @@ public class TestLaboratorio1{
 		}
 		for(int i = 10; i < 40;i++){
             long t1 = System.currentTimeMillis();
-            System.out.println("Adn1(), Adn2() : "+Laboratorio1.subCadenaComun(adn1.substring(0,i), adn2.substring(0,i)));
             //System.out.println("Adn1(), Adn2() : "+Laboratorio1.subCadenaComun(adn1.substring(0,i), adn2.substring(0,i)));
             Laboratorio1.subCadenaComun(adn1.substring(0,i), adn2.substring(0,i));
             long t2 = System.currentTimeMillis();
