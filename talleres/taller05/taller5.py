@@ -3,7 +3,7 @@ import random
 
 def insertionSort(arr):
     for i in range(len(arr)):
-        for  j in range(1):
+        for  j in range(i,0,-1):
             if  arr[j] < arr[j-1]:
                 temp = arr[j]
                 arr[j] = arr[j-1]
@@ -30,4 +30,13 @@ def generarArreglo(n):
     return arr
 
 
-print(sumaArreglo(generarArreglo(10)))
+
+#Prueba insertionSort
+arr = [3,4,1,2,5,0]
+arr_ordered = insertionSort(arr)
+for i in arr_ordered:
+    print(i)  
+
+print(sumaArreglo(generarArreglo(10)))#Prueba sumaArreglo
+
+tablaMultiplicar(3)
