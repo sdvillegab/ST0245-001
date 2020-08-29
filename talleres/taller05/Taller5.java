@@ -71,7 +71,7 @@ public class Taller5{
         }
         tablaMultiplicar(3);*/
         
-        for(int i = 10000;i<=10100;i++){
+        for(int i = 10000;i<=90000;i+=100){
             int vec [] = new int [i];
             int n = vec.length-1;
             for(int j = 0;j<vec.length;j++){
