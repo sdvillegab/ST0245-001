@@ -63,12 +63,26 @@ public class Taller5{
             sumaArreglo(new int[i]);
             long tf = System.currentTimeMillis();
             System.out.println(tf-ti);
-        }*/
+        }
         int[] arr = {5,4,0,1,2,3};
         int[] ordered = insertionSort(arr);
         for(int i = 0;i < ordered.length; i++){
             System.out.println(ordered[i]);
         }
-        tablaMultiplicar(3);
+        tablaMultiplicar(3);*/
+        
+        for(int i = 10000;i<=10100;i++){
+            int vec [] = new int [i];
+            int n = vec.length-1;
+            for(int j = 0;j<vec.length;j++){
+                vec[j] = n; 
+                n--;
+            }
+            //System.out.println(vec.length);
+            long ti = System.currentTimeMillis();
+            insertionSort(vec);
+            long tf = System.currentTimeMillis();
+            System.out.println(tf-ti);
+        }
     }
 }
