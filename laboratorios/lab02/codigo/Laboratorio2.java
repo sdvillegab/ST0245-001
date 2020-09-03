@@ -109,6 +109,21 @@ public class Laboratorio2
         Laboratory1.mergeSort(X);
         Laboratory1.InsertionSort(X);     
       }
+	  /* Pruebas merge sort
+	   for(int i = 10000;i<=90000;i+=100){
+            int vec [] = new int [i];
+            int n = vec.length-1;
+            for(int j = 0;j<vec.length;j++){
+                vec[j] = n; 
+                n--;
+            }
+
+            //System.out.println(vec.length);
+            long ti = System.currentTimeMillis();
+            sort(vec, 0, vec.length - 1);
+            long tf = System.currentTimeMillis();
+            System.out.println(tf-ti);
+        }*/
   }
   
 }
