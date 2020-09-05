@@ -13,7 +13,6 @@ import java.util.Arrays;
 public class Laboratorio2
 {
 
-  
   // Sorts an array using Insertion Sort
   public static void InsertionSort(int[] arr)
   {
@@ -98,18 +97,17 @@ public class Laboratorio2
         } 
     } 
   
-  public static void main(String[] args)
-  {
-      int[] A = {1,5,3,2,6};
+  public static void main(String[] args){
+     /* int[] A = {1,5,3,2,6};
       int[] B = {1,5,3,2};
       int[] C = {1,5,2,6};
       int[][] Arrays = {A,B,C};  
       for (int[] X : Arrays)
       {        
-        Laboratory1.mergeSort(X);
-        Laboratory1.InsertionSort(X);     
-      }
-	  /* Pruebas merge sort
+      //  Laboratory1.mergeSort(X);
+        ///Laboratory1.InsertionSort(X);     
+      }*/
+	   //Pruebas merge sort
 	   for(int i = 10000;i<=90000;i+=100){
             int vec [] = new int [i];
             int n = vec.length-1;
@@ -123,7 +121,7 @@ public class Laboratorio2
             sort(vec, 0, vec.length - 1);
             long tf = System.currentTimeMillis();
             System.out.println(tf-ti);
-        }*/
+        }
   }
   
 }
