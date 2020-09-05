@@ -39,7 +39,7 @@ public class Coordenadas {
     */
     public int size() {
         return size;
-    }   
+    }   //T(n)=O(1)
     
     /** 
     * @param e el elemento a guardar
@@ -72,7 +72,7 @@ public class Coordenadas {
             throw new Exception("index: " + i);
 
         return elements[i];
-    }
+    }//T(n) = O(1)
     
     /**
     * @param index es la posicion en la cual se va agregar el elemento
@@ -119,5 +119,5 @@ public class Coordenadas {
         }
         elements = newVec;
         size--;
-    }
+    }//T(n) = O(n)
 }
