@@ -1,4 +1,5 @@
-/**
+package codigo;
+/** 
  * Laboratorio 2 de Estructuras de Datos 1
  * 
  * @author Mauricio Toro 
@@ -8,13 +9,11 @@
  * @version 2
  */
 
-import java.util.Arrays;
-
 public class Laboratorio2
 {
 
   // Sorts an array using Insertion Sort
-  public static void InsertionSort(int[] arr)
+  public static void insertionSort(int[] arr)
   {
     for(int i = 0; i < arr.length; i++){
         for(int j = i; j > 0; j--){
@@ -108,7 +107,7 @@ public class Laboratorio2
         ///Laboratory1.InsertionSort(X);     
       }*/
 	   //Pruebas merge sort
-	   for(int i = 10000;i<=90000;i+=100){
+	   /*for(int i = 10000;i<=90000;i+=100){
             int vec [] = new int [i];
             int n = vec.length-1;
             for(int j = 0;j<vec.length;j++){
@@ -119,6 +118,21 @@ public class Laboratorio2
             //System.out.println(vec.length);
             long ti = System.currentTimeMillis();
             sort(vec, 0, vec.length - 1);
+            long tf = System.currentTimeMillis();
+            System.out.println(tf-ti);
+        }*/
+        //Pruebas insertionSort
+        for(int i = 10000;i<=90000;i+=100){
+            int vec [] = new int [i];
+            int n = vec.length-1;
+            for(int j = 0;j<vec.length;j++){
+                vec[j] = n; 
+                n--;
+            }
+
+            //System.out.println(vec.length);
+            long ti = System.currentTimeMillis();
+            insertionSort(vec);
             long tf = System.currentTimeMillis();
             System.out.println(tf-ti);
         }

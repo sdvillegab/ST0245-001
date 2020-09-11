@@ -1,13 +1,21 @@
+/**
+ * ListaEnlazada
+ * 
+ * Dado que tanto el metodo insert como remove son de
+ * complejidad O(n),pueden ser utilizados con millones de abejas
+ * 
+ * @author Julian Ramirez,Samuel Villegas
+ */
 import java.lang.IndexOutOfBoundsException; // Usar esto cuando se salga el índice
 // Una lista simplemente enlazada
 public class ListaEnlazada {
         private Node first;
         private int size;
 
-        public ListaEnlazada(){
-                size = 0;
-                first = null;	
-        }
+    public ListaEnlazada(){
+        size = 0;
+        first = null;	
+    }
 
 	/**
 	 * Returns the node at the specified position in this list.
@@ -97,6 +105,11 @@ public void remove(int index)throws IndexOutOfBoundsException{
         Node aux = buscar.next;
         buscar.next = aux.next;
         size--;    
+}
+
+public void clear(){
+    this.first = null;
+    this.size = 0;
 }
 
 // Verifica si está un dato en la lista
