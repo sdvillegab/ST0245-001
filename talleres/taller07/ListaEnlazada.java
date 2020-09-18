@@ -182,6 +182,28 @@ public class ListaEnlazada {
 		}
 		return true;
 	}
-
-
+	public static void main(String [] args){
+		ListaEnlazada lista = new ListaEnlazada();
+		lista.insert(1);
+		lista.insert(2);
+		lista.insert(1);
+		System.out.println(lista.palindromo());
+		lista.clear();
+		lista.insert(1);
+		lista.insert(2);
+		lista.insert(3);
+		System.out.println(lista.palindromo());
+		lista.clear();
+		lista.insert(1);
+		lista.insert(2);
+		lista.insert(2);
+		lista.insert(1);
+		System.out.println(lista.palindromo());
+		lista.clear();
+		lista.insert(1);
+		lista.insert(2);
+		lista.insert(2);
+		lista.insert(4);
+		System.out.println(lista.palindromo());		
+	}
 }
