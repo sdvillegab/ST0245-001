@@ -56,15 +56,24 @@ public class Taller8 {
     * @param neveras es una estructura de datos para representar el almacen con las neveras
     * @param solicitudes es una estructura de datos para representar las solicitudes
     */
-    public static void asignarSolicitudes(Stack<String> neveras, Queue<String[]> solicitudes){
-        while(solicitudes.peek() != null){
-            String[] solicitud = solicitudes.poll();
-            int cantidad = Integer.parseInt(solicitud[1]);
-            for(int i = 0; i < cantidad; i++){
-                System.out.println("Asigno a "+solicitud[0]+" "+neveras.pop());
-            }            
-        }
-    }
+    public static void asignarSolicitudes(Stack<Nevera> listaNev, Queue<Solicitud> listaSol){		
+	String res = "[";
+		for(int k = listaSol.size();k>0;k--){
+			Solicitud sol = listaSol.remove();		
+			res+="('"+sol.getEntidad()+"' ,[";		
+			for(int i = 0;i<sol.getCantidadNeveras();i++){	
+				if(listaNev.size() == 0) break;
+				if(i==sol.getCantidadNeveras()-1 || listaNev.size() == 1)
+					res+=listaNev.pop().imprimirNevera();
+				else res+=listaNev.pop().imprimirNevera()+",";					
+			}			
+			res+="])";		
+			if(listaNev.size() == 0) break;
+			else res+=",\n";
+		}
+		res+="]";	
+		System.out.println(res);
+	}
 	
     /**
     * @param stack es una pila ya implementada que se crea en el test
