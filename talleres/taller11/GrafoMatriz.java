@@ -34,7 +34,7 @@ public class GrafoMatriz {
     ArrayList<Integer> obtenerVerticesAsociados(int verticePartida){
         ArrayList<Integer> nodosAsociados = new ArrayList<>();
         for(int i = 0;i<numVertices;i++){
-            if(this.matriz[verticePartida][i] != SIN_CONEXION)nodosAsociados.add(this.matriz[verticePartida][i]);
+            if(this.matriz[verticePartida][i] != SIN_CONEXION)nodosAsociados.add(i);
         }
         return nodosAsociados;
     }
