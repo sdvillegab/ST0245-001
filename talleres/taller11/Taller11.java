@@ -34,8 +34,8 @@ public class Taller11 {
         grafo2.agregarArco(100, 2, 4);
         
         grafo2.mostrarMatriz();
-        System.out.println(grafo.obtenerLongitud(3,1));
-        System.out.println(grafo.obtenerVerticesAsociados(3));
+        System.out.println(grafo2.obtenerLongitud(3,1));
+        System.out.println(grafo2.obtenerVerticesAsociados(3));
         
     }
     
