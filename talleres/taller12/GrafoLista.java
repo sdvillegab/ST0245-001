@@ -89,5 +89,8 @@ public class GrafoLista {
             cont++;
         }
     }
+    public LinkedList<LinkedList<Vertice>> getLista(){
+        return this.lista;
+    }
 
 }
