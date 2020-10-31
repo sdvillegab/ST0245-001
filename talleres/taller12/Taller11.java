@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 public class Taller11 {
 
     public static void main(String[] args) {
@@ -18,23 +18,27 @@ public class Taller11 {
         System.out.println(grafo.obtenerLongitud(3,1));
         System.out.println(grafo.obtenerVerticesAsociados(3));
         
-        
-        GrafoMatriz grafo2 = new GrafoMatriz(6);
-        grafo2.agregarArco(10, 0, 1);
-        grafo2.agregarArco(20, 5, 0);
-        grafo2.agregarArco(30, 5, 3);
-        grafo2.agregarArco(40, 2, 0);
-        grafo2.agregarArco(50, 4, 3);
-        grafo2.agregarArco(60, 3, 2);
-        grafo2.agregarArco(70, 0, 3);
-        grafo2.agregarArco(80, 3, 0);
-        grafo2.agregarArco(90, 3, 1);
-        grafo2.agregarArco(100, 2, 4);
-        
-        grafo2.mostrarMatriz();
-        System.out.println(grafo2.obtenerLongitud(3,1));
-        System.out.println(grafo2.obtenerVerticesAsociados(3));
-        
-    }
     
+        System.out.println("DFS: "+dfs(0,4,grafo));
+        System.out.println("DFS: "+dfs(5,1,grafo));
+        System.out.println("DFS: "+dfs(4,4,grafo));
+        System.out.println("DFS: "+dfs(4,1,grafo));
+    }
+
+    public static boolean dfs(int start, int finish, GrafoLista graph){
+        boolean visited[] = new boolean[graph.size()];
+        return dfsAux(start, finish, graph, visited);
+    }
+
+    public static boolean dfsAux(int start, int finish, GrafoLista graph, boolean[] visited){
+        visited[start] = true;
+        if(start == finish) return true;
+        ArrayList<Integer> childs = graph.obtenerVerticesAsociados(start);
+        for(Integer child : childs){
+            if(!visited[child]){
+                return dfsAux(child, finish, graph, visited);
+            }
+        }
+        return false;
+    }
 }

@@ -31,7 +31,11 @@ public class GrafoLista {
     }
 
     boolean agregarArco(int etiqueta, int verticePartida, int verticeLlegada) {
-        return agregarArco(new Vertice(verticeLlegada, etiqueta), verticePartida);
+        if(agregarArco(new Vertice(verticeLlegada, etiqueta), verticePartida)){
+            numArcos+=1;
+            return true;
+        }
+        return false;
     }
 
     ArrayList<Integer> obtenerVerticesAsociados(int valorPartida) {
@@ -69,6 +73,10 @@ public class GrafoLista {
         return -1;
     }
 
+    public int size(){
+        return numArcos;
+    }
+    
     void mostrar() {
         int cont = 0;
         for (LinkedList list : lista) {
