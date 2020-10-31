@@ -1,7 +1,7 @@
 public class Vertice {
     int valor;
     int etiqueta;
-    boolean visited;
+    boolean visitado;
 
     Vertice(int valor, int etiqueta){
         this.valor = valor;
