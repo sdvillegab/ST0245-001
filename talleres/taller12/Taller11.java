@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.ArrayList;
 public class Taller11 {
 
@@ -19,12 +20,21 @@ public class Taller11 {
         System.out.println(grafo.obtenerVerticesAsociados(3));
         
     
-        System.out.println("DFS: "+dfs(0,4,grafo));
+        System.out.println("DFS: "+dfs(0,5,grafo)); 
         System.out.println("DFS: "+dfs(5,1,grafo));
         System.out.println("DFS: "+dfs(4,4,grafo));
         System.out.println("DFS: "+dfs(4,1,grafo));
-    }
 
+        System.out.println("BFS: "+bfs(0,5,grafo));
+        System.out.println("BFS: "+bfs(5,1,grafo));
+        System.out.println("BFS: "+bfs(4,4,grafo));
+        System.out.println("BFS: "+bfs(4,1,grafo));
+
+
+        
+        
+        
+    }
     public static boolean dfs(int start, int finish, GrafoLista graph){
         boolean visited[] = new boolean[graph.size()];
         return dfsAux(start, finish, graph, visited);
@@ -41,4 +51,29 @@ public class Taller11 {
         }
         return false;
     }
+
+    private static boolean bfs(Vertice inicio, Vertice fin, GrafoLista grafo, LinkedList<Vertice> valores, boolean [] visitados){
+        if(inicio.valor == fin.valor) return true;       
+        if(valores.isEmpty()) return false;
+        valores.remove();
+        visitados [inicio.valor] = true;
+        LinkedList<Vertice> ady = grafo.getLista().get(inicio.valor);
+
+        for(Vertice ver: ady){
+            if(!visitados[ver.valor]) valores.add(ver);
+        }      
+        if(!valores.isEmpty()) {
+            Vertice ver = valores.peek();
+            return bfs(ver, fin, grafo, valores,visitados);         
+        }
+        return false;
+    }
+    public static boolean bfs(int inicio, int fin, GrafoLista grafo){
+        LinkedList<Vertice> valores = new LinkedList<>();
+        valores.add(new Vertice(inicio,0));
+        boolean visitados [] = new boolean [grafo.getLista().size()];
+        return bfs(new Vertice(inicio, 0), new Vertice(fin,0), grafo,valores,visitados);
+    }
+    
 }
+
