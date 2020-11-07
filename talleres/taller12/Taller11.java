@@ -68,6 +68,7 @@ public class Taller11 {
         }
         return false;
     }
+    
     public static boolean bfs(int inicio, int fin, GrafoLista grafo){
         LinkedList<Vertice> valores = new LinkedList<>();
         valores.add(new Vertice(inicio,0));
