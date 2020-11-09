@@ -1,7 +1,7 @@
 public class Principal {
     public static void main(String [] args){
 
-        /*Grafo grafo = new Grafo(3);
+        Grafo grafo = new Grafo(3);
         grafo.Insert(0, 1, 10);
         grafo.Insert(1, 2, 10);
         grafo.Insert(2, 0, 10);
@@ -21,10 +21,10 @@ public class Principal {
         grafo.Insert(0, 6, 10);
         grafo.Insert(0, 7, 10);
         grafo.Insert(0, 8, 10);
-        System.out.println(grafo3.Bicoloreable());*/
+        System.out.println(grafo3.Bicoloreable());
 
 
-        Movilidad.inicio("data.txt", 11);
+        
 
     } 
 
