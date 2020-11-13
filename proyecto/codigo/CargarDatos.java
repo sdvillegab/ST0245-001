@@ -136,9 +136,6 @@ private static void ConteoProm(ArrayList<String[]> data, HashSet<String> valores
         }
         i++;
     }
-    if(i == 0) {
-        System.out.println("");
-    }
 }
 
 public static void crearArbol(ArrayList<String []> data,HashSet<String> valoresEvaluados,Nodo nodo, Variable [] variables){ 
