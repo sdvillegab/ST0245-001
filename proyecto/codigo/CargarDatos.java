@@ -1,5 +1,9 @@
+
+
 import java.io.*;
 import java.util.*;
+
+
 
 public class CargarDatos{
 
@@ -9,7 +13,6 @@ private static ArrayList<String[]> cargar(String direccion){
         BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(direccion), "utf-8"));          
         String linea;
         int indiceFilas = 0;
-
         while ((linea = in.readLine())!=null) { 
             String partesLinea [] =  linea.split(";");  
             if(indiceFilas != 0){    
@@ -19,6 +22,7 @@ private static ArrayList<String[]> cargar(String direccion){
                 for(int i = 0;i<partesLinea.length;i++){
                     if(comprobarVariable(i)){
                         if((i>64 && i<73))columnas[indiceColumnas] = verificarNota(partesLinea[i]);
+                        else if (partesLinea[i].isEmpty()) columnas[indiceColumnas] = "*";
                         else columnas[indiceColumnas] = partesLinea[i];
                         indiceColumnas++;
                     }
@@ -80,18 +84,21 @@ private static Variable[] asignarVariables(ArrayList<String[]> data){
 } 
 
 private static boolean pasarValores(ArrayList<String[]> data, HashSet<String> valoresEvaluados, Variable[] variables){         
+    int p = 0;    
     for(String [] fila: data){
         int i=0;
         String valorFinal = fila[30];
         for(String columna: fila){
             if(i != 30){
                 if(!(valoresEvaluados.contains(variables[i].getNombreVariable()+columna))) {
-                    variables[i].agregarValor(columna);             
+                    variables[i].agregarValor(columna);   
+                    p++;          
                 }
             }                  
             i++;  
         }   
     }  
+    if(p==0) return false;
     for(Variable variable :variables){
         variable.llenarValores();
     }
@@ -129,6 +136,9 @@ private static void ConteoProm(ArrayList<String[]> data, HashSet<String> valores
         }
         i++;
     }
+    if(i == 0) {
+        System.out.println("");
+    }
 }
 
 public static void crearArbol(ArrayList<String []> data,HashSet<String> valoresEvaluados,Nodo nodo, Variable [] variables){ 
@@ -137,12 +147,12 @@ public static void crearArbol(ArrayList<String []> data,HashSet<String> valoresE
     ArrayList<String[]> SI = new ArrayList<>();
     ArrayList<String[]> NO = new ArrayList<>();
 
-    for(String [] filas: data){
+    for(String [] filas: data){      
         if(filas[nodo.valor.getIndex()].equals(nodo.valor.getNombreValor())) SI.add(filas);
-        else NO.add(filas);
+        else NO.add(filas);    
     }
 
-    if(SI.size()<10) {
+    if(SI.size()<10){
         int n = comprobarDatoMayor(SI);
         if(n == 1) nodo.der = new Nodo(new Valor("1", "Terminal", -1));
         else nodo.der = new Nodo(new Valor("0", "Terminal", -1));
@@ -158,63 +168,77 @@ public static void crearArbol(ArrayList<String []> data,HashSet<String> valoresE
     HashSet<String> valoresEvaluadoSi = new HashSet<>();
     HashSet<String> valoresEvaluadoNo = new HashSet<>();
 
-    for(int i = 0;i<variables.length;i++){
+    for(int i = 0;i<variables.length;i++){       
         variableSi [i] = new Variable(variables[i].getNombreVariable(), i);
         variableNo [i] = new Variable(variables[i].getNombreVariable(), i);
     }
-
     for(String valoresEva: valoresEvaluados){
         valoresEvaluadoSi.add(valoresEva);
         valoresEvaluadoNo.add(valoresEva);
     }
 
+    if(nodo.izq==null || !nodo.izq.valor.getVariablePadre().equals("Terminal")){
 
-    if(nodo.izq==null){
-
-        pasarValores(NO, valoresEvaluadoSi, variableNo);
-        ConteoProm(NO, valoresEvaluadoSi, variableNo);
-        Valor valor =  giniMenor(variableNo);
-        valoresEvaluadoNo.add(valor.getVariablePadre()+valor.getNombreValor());
-        if(valoresEvaluadoNo.size() == CANTIDAD_VALORES){
+        if(!pasarValores(NO, valoresEvaluadoNo, variableNo)){
             int n = comprobarDatoMayor(NO);
             if(n == 1) nodo.izq = new Nodo(new Valor("1", "Terminal", -1));
             else nodo.izq = new Nodo(new Valor("0", "Terminal", -1));
+        }else{       
 
-        }else if(comprobarMismoTipo(NO)){
+            ConteoProm(NO, valoresEvaluadoNo, variableNo);
+            calcularGini(variableNo);
+            Valor valor =  giniMenor(variableNo);
+
+            valoresEvaluadoNo.add(valor.getVariablePadre()+valor.getNombreValor());
             
-            if(NO.get(0)[30].equals("1")) nodo.izq = new Nodo(new Valor("1", "Terminal", -1));
-            else nodo.izq = new Nodo(new Valor("0", "Terminal", -1));
+            if(valoresEvaluadoNo.size() == CANTIDAD_VALORES){
+                int n = comprobarDatoMayor(NO);
+                if(n == 1) nodo.izq = new Nodo(new Valor("1", "Terminal", -1));
+                else nodo.izq = new Nodo(new Valor("0", "Terminal", -1));
 
-        }else{
-            nodo.izq =  new Nodo(valor);
-            crearArbol(NO, valoresEvaluadoNo, nodo.izq, variableNo);
-        }
+            }else if(comprobarMismoTipo(NO)){
+                
+                if(NO.get(0)[30].equals("1")) nodo.izq = new Nodo(new Valor("1", "Terminal", -1));
+                else nodo.izq = new Nodo(new Valor("0", "Terminal", -1));
 
+            }else{
+                nodo.izq =  new Nodo(valor);
+                crearArbol(NO, valoresEvaluadoNo, nodo.izq, variableNo);
+            }
+
+        }      
     }
-    if(nodo.der==null){
-        pasarValores(SI, valoresEvaluadoSi, variableSi);
-        ConteoProm(SI, valoresEvaluadoSi, variableSi);
-        Valor valor =  giniMenor(variableSi);
-        valoresEvaluadoSi.add(valor.getVariablePadre()+valor.getNombreValor());
-
-        if(valoresEvaluadoSi.size() == CANTIDAD_VALORES){
-
+    if(nodo.der==null || !nodo.der.valor.getVariablePadre().equals("Terminal")){
+        if(!pasarValores(SI, valoresEvaluadoSi, variableSi)){
             int n = comprobarDatoMayor(SI);
             if(n == 1) nodo.der = new Nodo(new Valor("1", "Terminal", -1));
             else nodo.der = new Nodo(new Valor("0", "Terminal", -1));
-
-        }else if(comprobarMismoTipo(SI)){
-
-            if(SI.get(0)[30].equals("1")) nodo.der = new Nodo(new Valor("1", "Terminal", -1));
-            else nodo.der = new Nodo(new Valor("0", "Terminal", -1));
-
         }else{
-            nodo.der =  new Nodo(valor);
-            crearArbol(SI, valoresEvaluadoSi, nodo.der, variableSi);
-        }
-    } 
-}
+            ConteoProm(SI, valoresEvaluadoSi, variableSi);
+            calcularGini(variableSi);
+            Valor valor =  giniMenor(variableSi);
+            valoresEvaluadoSi.add(valor.getVariablePadre()+valor.getNombreValor());
 
+            if(valoresEvaluadoSi.size() == CANTIDAD_VALORES){
+
+                int n = comprobarDatoMayor(SI);
+                if(n == 1) nodo.der = new Nodo(new Valor("1", "Terminal", -1));
+                else nodo.der = new Nodo(new Valor("0", "Terminal", -1));
+
+            }else if(comprobarMismoTipo(SI)){
+
+                if(SI.get(0)[30].equals("1")) nodo.der = new Nodo(new Valor("1", "Terminal", -1));
+                else nodo.der = new Nodo(new Valor("0", "Terminal", -1));
+
+            }else{
+                nodo.der =  new Nodo(valor);
+                crearArbol(SI, valoresEvaluadoSi, nodo.der, variableSi);
+            }
+        }    
+    } 
+
+}
+ 
 public static boolean comprobarMismoTipo(ArrayList<String []> data){
     String i = data.get(0)[30];
     for(String [] filas: data){
@@ -244,7 +268,16 @@ private static Valor giniMenor(Variable[] variables){
             }
         }
     }
+
     return valorRetorno;
+}
+
+private static void calcularGini(Variable[] variables){
+    for(Variable var: variables){
+        for(Valor val: var.getValores()){
+            val.calcularIndiceGini();
+        }
+    }
 }
 
 public static Arbol Inicio(String direccion){
@@ -253,6 +286,7 @@ public static Arbol Inicio(String direccion){
     HashSet<String> valoresEvaluados = new HashSet<>();
     pasarValores(data, valoresEvaluados, variables);
     ConteoProm(data,valoresEvaluados , variables);
+    calcularGini(variables);
     Valor valor =  giniMenor(variables);
     Arbol arbol = new Arbol();
     arbol.raiz = new Nodo(valor);
