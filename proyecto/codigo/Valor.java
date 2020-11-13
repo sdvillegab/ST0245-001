@@ -1,4 +1,3 @@
-
 public class Valor {
     private String variablePadre;
     private String nombreValor;
@@ -36,24 +35,24 @@ public class Valor {
 
     public void masNodoSi_cant1(){
         nodoSi_cant1++;
-        calcularIndiceGini();
     }
     public void masNodoSi_cant0(){
         nodoSi_cant0++;
-        calcularIndiceGini();
     }
     public void masNodoNo_cant1(){
         nodoNo_cant1++;
-        calcularIndiceGini();
     }
     public void masNodoNo_cant0(){
         nodoNo_cant0++;
-        calcularIndiceGini();
     }
 
     public void calcularIndiceGini(){
         float totalSi = nodoSi_cant0+nodoSi_cant1;
         float totalNo = nodoNo_cant0+nodoNo_cant1;
+        if(totalSi==0 || totalNo==0){
+            this.indiceGini=0;
+            return;
+        }    
         float p0Si, p1Si, p0No, p1No, igSi, igNo, igPon;
         p0Si = nodoSi_cant0/totalSi;
         p1Si = nodoSi_cant1/totalSi;
