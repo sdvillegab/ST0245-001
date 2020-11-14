@@ -7,37 +7,56 @@ import java.util.*;
 
 public class CargarDatos{
 
+
+
+/*  
+    Motivo: Permite cargar los datos del txt a un ArrayList. 
+    Retorno: ArrayList<String[]>
+    Complejidad: O(m*n) m siendo la cantidad de estudiantes y n la cantidad de columnas 
+    Metodos extra utilizados: comprobarVariable O(1)
+                                verificarNota O(1)
+*/
 private static ArrayList<String[]> cargar(String direccion){
-    ArrayList<String[]> res =  new ArrayList<>();
+    ArrayList<String[]> res = new ArrayList<>();
     try {
-        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream("data/"+direccion), "utf-8"));          
+        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(direccion), "utf-8"));
         String linea;
         int indiceFilas = 0;
-        while ((linea = in.readLine())!=null) { 
-            String partesLinea [] =  linea.split(";");  
-            if(indiceFilas != 0){    
-                String columnas [] =  new String [31];
+        while ((linea = in.readLine()) != null) {
+            String partesLinea[] = linea.split(";");
+            if (indiceFilas != 0) {
+                String columnas[] = new String[31];
                 int indiceColumnas = 0;
-
-                for(int i = 0;i<partesLinea.length;i++){
-                    if(comprobarVariable(i)){
-                        if((i>64 && i<73))columnas[indiceColumnas] = verificarNota(partesLinea[i]);
-                        else if (partesLinea[i].isEmpty()) columnas[indiceColumnas] = "*";
-                        else columnas[indiceColumnas] = partesLinea[i];
+                for (int i = 0; i < partesLinea.length; i++) {
+                    if (comprobarVariable(i)) {
+                        if ((i > 64 && i < 73))
+                            columnas[indiceColumnas] = verificarNota(partesLinea[i]);
+                        else if (partesLinea[i].isEmpty())
+                            columnas[indiceColumnas] = "*";
+                        else
+                            columnas[indiceColumnas] = partesLinea[i];
                         indiceColumnas++;
                     }
-                }          
+                }
                 res.add(columnas);
-            }else{
+            } else {
                 res.add(partesLinea);
             }
             indiceFilas++;
-        } 
-    }catch (Exception e) {
+        }
+    } catch (Exception e) {
         System.out.println(e);
     }
     return res;
 }
+
+
+/*  
+    Motivo: Permite comprobar que variables serán utilizadas en la creación del aŕbol. 
+    Retorno: Boolean
+    Complejidad: O(1) 
+    Metodos extra utilizados: Ninguno
+*/
 
 private static boolean comprobarVariable(int indice){
     if( (indice>3 && indice<11) ||(indice == 13) || (indice == 22) || (indice ==26) || (indice >27 && indice <33) 
@@ -47,6 +66,13 @@ private static boolean comprobarVariable(int indice){
     }
     return false;
 }
+
+/*  
+    Motivo: Permite cambiar el formato de las notas para los datos. 
+    Retorno: String
+    Complejidad: O(1) 
+    Metodos extra utilizados: Ninguno
+*/
 
 private static String verificarNota(String cadena){
     if(cadena.isEmpty()) return "";
@@ -70,6 +96,13 @@ private static String verificarNota(String cadena){
     return "";
 }
 
+/*  
+    Motivo: Permite asignar las variables que se van a validar
+    Retorno: Variable []
+    Complejidad: O(k) siendo k el numero de variables 
+    Metodos extra utilizados: comprobarVariable O(1)
+*/
+
 private static Variable[] asignarVariables(ArrayList<String[]> data){       
     String [] partesLinea = data.remove(0);
     Variable [] variables = new Variable[30];
@@ -82,6 +115,16 @@ private static Variable[] asignarVariables(ArrayList<String[]> data){
     }
     return variables;      
 } 
+
+/*  Motivo: Permite asignar los diferentes valores que se van a validar como nodos del arbol (Las variables pueden tener 1 o más valores),
+    si no encuentra variables quiere decir que para el conjunto de datos a validar no se encuentran valores disponibles. 
+    Retorno: Boolean
+    Complejidad: O(m*k) siendo m la cantidad de estudiantes, k la cantidad de variables, o datos del estudiante.
+    Metodos extra utilizados: contains(Hashset) O(1) 
+                                agregarValor(Variable) O(1)
+                                llenarValores(Variable) O(v) siendo la cantidad de valores de una variable, este valor es mínimo podemos tomarlo como constante.
+*/
+
 
 private static boolean pasarValores(ArrayList<String[]> data, HashSet<String> valoresEvaluados, Variable[] variables){         
     int p = 0;    
@@ -105,6 +148,7 @@ private static boolean pasarValores(ArrayList<String[]> data, HashSet<String> va
     return true;
 }
 
+//O(m*k*v) m => numero de estudiantes o filas, k numero de variables o columnas, v el numero de valores de la varible respectiva
 private static void ConteoProm(ArrayList<String[]> data, HashSet<String> valoresEvaluados, Variable[] variables){   
     int i = 0;
     for(String[] fila: data){
@@ -136,7 +180,11 @@ private static void ConteoProm(ArrayList<String[]> data, HashSet<String> valores
         }
         i++;
     }
+    if(i == 0) {
+        System.out.println("");
+    }
 }
+
 
 public static void crearArbol(ArrayList<String []> data,HashSet<String> valoresEvaluados,Nodo nodo, Variable [] variables){ 
     final int CANTIDAD_VALORES = 198;
@@ -148,6 +196,7 @@ public static void crearArbol(ArrayList<String []> data,HashSet<String> valoresE
         if(filas[nodo.valor.getIndex()].equals(nodo.valor.getNombreValor())) SI.add(filas);
         else NO.add(filas);    
     }
+
 
     if(SI.size()<10){
         int n = comprobarDatoMayor(SI);
@@ -235,7 +284,7 @@ public static void crearArbol(ArrayList<String []> data,HashSet<String> valoresE
     } 
 
 }
- 
+//O(m) m siendo el numero de estudiantes o filas
 public static boolean comprobarMismoTipo(ArrayList<String []> data){
     String i = data.get(0)[30];
     for(String [] filas: data){
@@ -243,7 +292,8 @@ public static boolean comprobarMismoTipo(ArrayList<String []> data){
     }
     return true;
 }
-
+    
+//O(m) m siendo el numero de estudiantes o filas
 public static int comprobarDatoMayor(ArrayList<String []> data){
     int cont1 = 0;
     int cont0 = 0;
@@ -254,9 +304,8 @@ public static int comprobarDatoMayor(ArrayList<String []> data){
     if(cont1>cont0) return 1;
     else return 0;
 }
-
+//O(k*v) k siendo el numero de columnas o variables, y v siendo numero de valores
 private static Valor giniMenor(Variable[] variables){
-
     Valor valorRetorno =  new Valor(" ","",-1);
     for(Variable var:variables){
         for(Valor val: var.getValores()){
@@ -268,7 +317,7 @@ private static Valor giniMenor(Variable[] variables){
 
     return valorRetorno;
 }
-
+//O(k*v) k siendo el numero de columnas o variables, y v siendo numero de valores
 private static void calcularGini(Variable[] variables){
     for(Variable var: variables){
         for(Valor val: var.getValores()){
@@ -279,16 +328,24 @@ private static void calcularGini(Variable[] variables){
 
 public static Arbol Inicio(String direccion){
     ArrayList<String[]> data = cargar(direccion);
+
     Variable variables [] = asignarVariables(data);
+
     HashSet<String> valoresEvaluados = new HashSet<>();
     pasarValores(data, valoresEvaluados, variables);
     ConteoProm(data,valoresEvaluados , variables);
     calcularGini(variables);
+
+
     Valor valor =  giniMenor(variables);
+
     Arbol arbol = new Arbol();
     arbol.raiz = new Nodo(valor);
+
     valoresEvaluados.add(valor.getVariablePadre()+valor.getNombreValor());
+    
     crearArbol(data, valoresEvaluados, arbol.raiz, variables);
+
     return arbol;
 }
 
