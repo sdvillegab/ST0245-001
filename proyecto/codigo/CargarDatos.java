@@ -19,7 +19,7 @@ public class CargarDatos{
 private static ArrayList<String[]> cargar(String direccion){
     ArrayList<String[]> res = new ArrayList<>();
     try {
-        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(direccion), "utf-8"));
+        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream("data/"+direccion), "utf-8"));
         String linea;
         int indiceFilas = 0;
         while ((linea = in.readLine()) != null) {
