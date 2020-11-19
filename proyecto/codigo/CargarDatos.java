@@ -177,7 +177,8 @@ private static boolean pasarValores(ArrayList<String[]> data, HashSet<String> va
 }
 
 /**
- * ConteoProm .................
+ * ConteoProm Permite realizar el conteo en los valores sobre la cantidad que 0 y 1 que cumplen el valor, y la cantidad de 0 y 1 que no la cumplen, para despues 
+ * hallar el gini. 
  * O(m*k*v) m => numero de estudiantes o filas, k numero de variables o columnas, v el numero de valores de la varible respectiva
  * 
  * @param data
@@ -328,7 +329,7 @@ public static void crearArbol(ArrayList<String []> data,HashSet<String> valoresE
 }
 
 /**
- * comprobarMismoTipo ..............
+ * comprobarMismoTipo Permite saber si la data tiene todos los resultados iguales, es decir, si el exito de todos los datos es 1 o 0.
  * O(m) m siendo el numero de estudiantes o filas
  * 
  * @param data
@@ -343,7 +344,7 @@ public static boolean comprobarMismoTipo(ArrayList<String []> data){
 }
     
 /**
- * comprobarDatoMayor .........
+ * comprobarDatoMayor Permite saber que valor de exito se repite mas, ya sea 1 o 0. 
  * O(m) m siendo el numero de estudiantes o filas
  * 
  * @param data
@@ -381,7 +382,7 @@ private static Valor giniMenor(Variable[] variables){
 }
 
 /**
- * calcularGini ..................
+ * calcularGini Realiza iteraciones por todos los valores existentes en kas variables y llama al metodo calcularIndiceGini el cual calcula el indice del valor actual.
  * O(k*v) k siendo el numero de columnas o variables, y v siendo numero de valores
  * 
  * @param variables
@@ -446,7 +447,7 @@ public static double[] Test(String direccion, Arbol arbol){
 }
 
 /**
- * recorridoArbol ............
+ * recorridoArbol Permite recorrer el arbol con valores de un estudiante especifico, para retornar la predicción 
  * @param fila
  * @param nodo
  * @return (String)
